@@ -8,10 +8,12 @@ package jogodavelhaf;
  *
  * @author hugog
  */
-public class Variaveis {
 
+
+public class Variaveis {
     public int linha;
     public int coluna;
     public int jogadorAtual;
     public int opcao;
 }
+

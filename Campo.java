@@ -9,7 +9,7 @@ package jogodavelhaf;
  * @author hugog
  */
 public class Campo {
-     private char simbolo;
+    private char simbolo;
 
     public Campo() {
         this.simbolo = ' ';
@@ -22,4 +22,9 @@ public class Campo {
     public void setSimbolo(char simbolo) {
         this.simbolo = simbolo;
     }
+
+    public String toString() {
+        return String.valueOf(simbolo);
+    }
 }
+

@@ -8,8 +8,9 @@ package jogodavelhaf;
  *
  * @author hugog
  */
+
 public class Tabuleiro {
-      private int[][] tabuleiro = new int[3][3];
+    private Campo[][] tabuleiro = new Campo[3][3];
 
     public Tabuleiro() {
         zerarTabuleiro();
@@ -18,7 +19,7 @@ public class Tabuleiro {
     public void zerarTabuleiro() {
         for (int linha = 0; linha < 3; linha++) {
             for (int coluna = 0; coluna < 3; coluna++) {
-                tabuleiro[linha][coluna] = 0;
+                tabuleiro[linha][coluna] = new Campo();
             }
         }
     }
@@ -27,55 +28,47 @@ public class Tabuleiro {
         System.out.println();
         for (int linha = 0; linha < 3; linha++) {
             for (int coluna = 0; coluna < 3; coluna++) {
-                if (tabuleiro[linha][coluna] == -1) {
-                    System.out.print(" X ");
-                } else if (tabuleiro[linha][coluna] == 1) {
-                    System.out.print(" O ");
-                } else {
-                    System.out.print("   ");
-                }
+                System.out.print(tabuleiro[linha][coluna]);
                 if (coluna < 2) {
                     System.out.print("|");
                 }
             }
             System.out.println();
             if (linha < 2) {
-                System.out.println("-----------");
+                System.out.println("-----");
             }
         }
     }
 
-    public int getPosicao(int[] tentativa) {
-        return tabuleiro[tentativa[0]][tentativa[1]];
+    public char getPosicao(int[] tentativa) {
+        return tabuleiro[tentativa[0]][tentativa[1]].getSimbolo();
     }
 
-    public void setPosicao(int[] tentativa, int jogador) {
-        tabuleiro[tentativa[0]][tentativa[1]] = (jogador == 1) ? -1 : 1;
+    public void setPosicao(int[] tentativa, char simbolo) {
+        tabuleiro[tentativa[0]][tentativa[1]].setSimbolo(simbolo);
     }
 
-    public boolean verificarVencedor(int jogador) {
-        int simbolo = (jogador == 1) ? -1 : 1;
-
+    public boolean verificarVencedor(char simbolo) {
         // Verifica linhas
         for (int linha = 0; linha < 3; linha++) {
-            if (tabuleiro[linha][0] == simbolo && tabuleiro[linha][1] == simbolo && tabuleiro[linha][2] == simbolo) {
+            if (tabuleiro[linha][0].getSimbolo() == simbolo && tabuleiro[linha][1].getSimbolo() == simbolo && tabuleiro[linha][2].getSimbolo() == simbolo) {
                 return true;
             }
         }
 
         // Verifica colunas
         for (int coluna = 0; coluna < 3; coluna++) {
-            if (tabuleiro[0][coluna] == simbolo && tabuleiro[1][coluna] == simbolo && tabuleiro[2][coluna] == simbolo) {
+            if (tabuleiro[0][coluna].getSimbolo() == simbolo && tabuleiro[1][coluna].getSimbolo() == simbolo && tabuleiro[2][coluna].getSimbolo() == simbolo) {
                 return true;
             }
         }
 
         // Verifica diagonais
-        if (tabuleiro[0][0] == simbolo && tabuleiro[1][1] == simbolo && tabuleiro[2][2] == simbolo) {
+        if (tabuleiro[0][0].getSimbolo() == simbolo && tabuleiro[1][1].getSimbolo() == simbolo && tabuleiro[2][2].getSimbolo() == simbolo) {
             return true;
         }
 
-        if (tabuleiro[0][2] == simbolo && tabuleiro[1][1] == simbolo && tabuleiro[2][0] == simbolo) {
+        if (tabuleiro[0][2].getSimbolo() == simbolo && tabuleiro[1][1].getSimbolo() == simbolo && tabuleiro[2][0].getSimbolo() == simbolo) {
             return true;
         }
 
@@ -85,7 +78,7 @@ public class Tabuleiro {
     public boolean verificarEmpate() {
         for (int linha = 0; linha < 3; linha++) {
             for (int coluna = 0; coluna < 3; coluna++) {
-                if (tabuleiro[linha][coluna] == 0) {
+                if (tabuleiro[linha][coluna].getSimbolo() == ' ') {
                     return false;
                 }
             }

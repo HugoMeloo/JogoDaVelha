@@ -8,6 +8,7 @@ package jogodavelhaf;
  *
  * @author hugog
  */
+
 public class Jogador {
     private char simbolo;
 
@@ -23,3 +24,5 @@ public class Jogador {
         this.simbolo = simbolo;
     }
 }
+
+
